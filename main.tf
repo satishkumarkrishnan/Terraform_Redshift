@@ -37,7 +37,7 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   master_password    = "Tokyo123"
 }*/
 
-resource "aws_redshift_cluster" "example" {
+resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "exampleuser"
