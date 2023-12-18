@@ -6,7 +6,7 @@ module "iam" {
 }
 
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
-  authentication_profile_name = "tokyo_redshift"
+  authentication_profile_name = "tokyo-redshift"
   authentication_profile_content = jsonencode(
     {
       AllowDBUserOverride = "1"
@@ -16,7 +16,7 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   )
 }
 
-resource "aws_redshift_cluster" "tokyo_redshift_cluster" {
+resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "exampleuser"
