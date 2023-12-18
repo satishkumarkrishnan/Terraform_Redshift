@@ -22,7 +22,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   master_username    = "exampleuser"
   node_type          = "dc1.large"
   cluster_type       = "single-node"
-  master_password    = "tokyo123"
+  master_password    = "Tokyo123"
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
