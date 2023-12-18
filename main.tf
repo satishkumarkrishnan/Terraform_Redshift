@@ -27,7 +27,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
-  cluster_identifier = aws_redshift_cluster.tokyo_redshift_cluster.cluster_identifier
+  cluster_identifier = aws_redshift_cluster.tokyo-redshift0cluster.cluster_identifier
   #cluster_identifier = aws_redshift_cluster.example.cluster_identifier
   #iam_role_arns      = [aws_iam_role.example.arn]
   iam_role_arns      = [module.iam.tokyo_IAM_role]
