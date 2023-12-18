@@ -23,7 +23,7 @@ resource "aws_redshift_cluster" "tokyo_redshift_cluster" {
   node_type          = "dc1.large"
   cluster_type       = "single-node"
 
-  manage_master_password = true
+  #manage_master_password = true
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
