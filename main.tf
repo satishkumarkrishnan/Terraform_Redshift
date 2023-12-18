@@ -20,7 +20,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "exampleuser"
-  node_type          = "dc1.large"
+  node_type          = "dc1.small"
   cluster_type       = "single-node"
   master_password    = "Tokyo123"
 }
