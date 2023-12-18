@@ -5,6 +5,10 @@ module "iam" {
   source="git@github.com:satishkumarkrishnan/Terraform_IAM.git?ref=main"  
 }
 
+module "vpc" {
+  source ="git@github.com:satishkumarkrishnan/terraform-aws-vpc.git?ref=main"
+}
+
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   authentication_profile_name = "tokyo-redshift"
   authentication_profile_content = jsonencode(
@@ -16,13 +20,22 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   )
 }
 
-resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
+/*resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "exampleuser"
   node_type          = "dc2.large"
   cluster_type       = "single-node"
   master_password    = "Tokyo123"
+}*/
+
+resource "aws_redshift_cluster" "example" {
+  cluster_identifier = "tf-redshift-cluster"
+  database_name      = "mydb"
+  master_username    = "exampleuser"
+  master_password    = "Tokyo123"
+  node_type          = "dc2.large"
+  cluster_type       = "single-node"
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
