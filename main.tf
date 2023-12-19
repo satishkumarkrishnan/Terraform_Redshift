@@ -29,15 +29,6 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   depends_on = [module.vpc]
 }
 
-/*resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
-  cluster_identifier = "tf-redshift-cluster"
-  database_name      = "mydb"
-  master_username    = "exampleuser"
-  node_type          = "dc2.large"
-  cluster_type       = "single-node"
-  master_password    = "Tokyo123"
-}*/
-
 resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_identifier        = "tf-redshift-cluster"
   database_name             = "mydb"
@@ -49,9 +40,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
-  cluster_identifier = aws_redshift_cluster.tokyo-redshift-cluster.cluster_identifier
-  #cluster_identifier = aws_redshift_cluster.example.cluster_identifier
-  #iam_role_arns      = [aws_iam_role.example.arn]
+  cluster_identifier = aws_redshift_cluster.tokyo-redshift-cluster.cluster_identifier  
   iam_role_arns      = [module.iam.tokyo_IAM_role]
   depends_on         = [module.vpc] 
 }
