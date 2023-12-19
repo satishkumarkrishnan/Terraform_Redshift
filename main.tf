@@ -46,7 +46,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   node_type                 = "dc2.large"
   cluster_type              = "single-node"
   vpc_security_group_ids    = [module.vpc.vpc_fe_sg]
-  cluster_subnet_group_name = [module.vpc.vpc_fe_subnet]
+  cluster_subnet_group_name = [module.vpc.vpc_fe_subnet.id]
   depends_on                = [module.vpc]  
 }
 
