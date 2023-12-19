@@ -54,5 +54,5 @@ resource "aws_redshift_cluster_iam_roles" "example" {
   #cluster_identifier = aws_redshift_cluster.example.cluster_identifier
   #iam_role_arns      = [aws_iam_role.example.arn]
   iam_role_arns      = [module.iam.tokyo_IAM_role]
-  depends_on = [module.vpc] 
+  depends_on         = [module.vpc] 
 }
