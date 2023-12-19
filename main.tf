@@ -36,7 +36,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   master_password           = "Tokyo123"
   node_type                 = "dc2.large"
   cluster_type              = "single-node"
-  final_snapshot_identifier = "true"
+  final_snapshot_identifier = "tokyo-cluster-backup"
   
   depends_on                = [module.vpc]  
 }
