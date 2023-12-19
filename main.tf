@@ -39,14 +39,15 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
 }*/
 
 resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
-  cluster_identifier = "tf-redshift-cluster"
-  database_name      = "mydb"
-  master_username    = "exampleuser"
-  master_password    = "Tokyo123"
-  node_type          = "dc2.large"
-  cluster_type       = "single-node"
-  vpc_security_group_ids = [module.vpc.vpc_fe_sg]
-  depends_on         = [module.vpc]  
+  cluster_identifier        = "tf-redshift-cluster"
+  database_name             = "mydb"
+  master_username           = "exampleuser"
+  master_password           = "Tokyo123"
+  node_type                 = "dc2.large"
+  cluster_type              = "single-node"
+  vpc_security_group_ids    = [module.vpc.vpc_fe_sg]
+  cluster_subnet_group_name = [module.vpc.vpc_fe_subnet]
+  depends_on                = [module.vpc]  
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
