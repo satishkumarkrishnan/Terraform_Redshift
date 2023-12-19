@@ -45,7 +45,8 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   master_password    = "Tokyo123"
   node_type          = "dc2.large"
   cluster_type       = "single-node"
-  depends_on = [module.vpc]  
+  vpc_security_group_ids = [module.vpc.vpc_fe_sg]
+  depends_on         = [module.vpc]  
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
