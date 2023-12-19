@@ -4,18 +4,20 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      #version   = "5.0.0"  
-      version   = "~> 4.2.0"  
+      version   = "< 5.0.0"  
+      #version   = "~> 4.2.0"  
     }
   }
 }
 
 module "iam" {
   source="git@github.com:satishkumarkrishnan/Terraform_IAM.git?ref=main"
+  version = "< 5.0.0"
 }
 
 module "vpc" {
   source ="git@github.com:satishkumarkrishnan/terraform-aws-vpc.git?ref=main"
+  version = "< 5.0.0"
 }
 
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
