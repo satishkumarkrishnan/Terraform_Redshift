@@ -20,6 +20,7 @@ resource "aws_default_vpc" "default-tokyo-vpc" {
   tags = {
     Name = var.vpc
   }
+    
 }
 
 # Create Default Subnet
