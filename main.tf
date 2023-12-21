@@ -30,7 +30,8 @@ resource "aws_default_subnet" "tokyo_default_az1" {
   force_destroy = "true"
    tags = {
     Name        = "tokyo-subnets-default"
-  }  
+    }  
+    depends_on = [aws_default_vpc.default-tokyo-vpc]
 }
 
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
