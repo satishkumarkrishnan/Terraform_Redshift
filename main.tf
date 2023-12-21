@@ -13,10 +13,6 @@ module "iam" {
   source="git@github.com:satishkumarkrishnan/Terraform_IAM.git?ref=main"
 }
 
-/*module "vpc" {
-  source ="git@github.com:satishkumarkrishnan/terraform-aws-vpc.git?ref=main"
-}*/
-
 # Create Default VPC
 
 resource "aws_default_vpc" "default-tokyo-vpc" {
