@@ -41,6 +41,7 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
       App_ID              = "example"
     }
   )
+  depends_on = [aws_default_vpc.default-tokyo-vpc]
 }
 
 resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
@@ -51,10 +52,11 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   node_type                 = "dc2.large"
   cluster_type              = "single-node"
   final_snapshot_identifier = "tokyo-cluster-backup"
-  
+  depends_on = [aws_default_vpc.default-tokyo-vpc]  
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
   cluster_identifier = aws_redshift_cluster.tokyo-redshift-cluster.cluster_identifier  
-  iam_role_arns      = [module.iam.tokyo_IAM_role]  
+  iam_role_arns      = [module.iam.tokyo_IAM_role]
+  depends_on         = [aws_default_vpc.default-tokyo-vpc]
 }
