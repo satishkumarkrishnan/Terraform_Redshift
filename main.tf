@@ -13,8 +13,27 @@ module "iam" {
   source="git@github.com:satishkumarkrishnan/Terraform_IAM.git?ref=main"
 }
 
-module "vpc" {
+/*module "vpc" {
   source ="git@github.com:satishkumarkrishnan/terraform-aws-vpc.git?ref=main"
+}*/
+
+# Create Default VPC
+
+resource "aws_default_vpc" "default-tokyo-vpc" {
+ force_destroy = "true"
+  tags = {
+    Name = var.vpc
+  }
+}
+
+# Create Default Subnet
+
+resource "aws_default_subnet" "tokyo_default_az1" {
+  availability_zone = "ap-northeast-1a"
+  force_destroy = "true"
+   tags = {
+    Name        = "tokyo-subnets-default"
+  }  
 }
 
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
@@ -26,7 +45,6 @@ resource "aws_redshift_authentication_profile" "tokyo_redshift" {
       App_ID              = "example"
     }
   )
-  depends_on = [module.vpc]
 }
 
 resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
@@ -38,11 +56,9 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   cluster_type              = "single-node"
   final_snapshot_identifier = "tokyo-cluster-backup"
   
-  depends_on                = [module.vpc]  
 }
 
 resource "aws_redshift_cluster_iam_roles" "example" {
   cluster_identifier = aws_redshift_cluster.tokyo-redshift-cluster.cluster_identifier  
-  iam_role_arns      = [module.iam.tokyo_IAM_role]
-  depends_on         = [module.vpc] 
+  iam_role_arns      = [module.iam.tokyo_IAM_role]  
 }
