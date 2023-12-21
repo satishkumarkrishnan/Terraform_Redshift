@@ -17,6 +17,7 @@ module "iam" {
 
 resource "aws_default_vpc" "default-tokyo-vpc" {
  force_destroy = "true"
+ count = 0
   tags = {
     Name = var.vpc
   }
