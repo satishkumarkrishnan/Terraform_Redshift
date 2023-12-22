@@ -17,10 +17,10 @@ module "iam" {
 
 resource "aws_default_vpc" "default-tokyo-vpc" {
  force_destroy = "true" 
+ 
   tags = {
     Name = var.vpc
-  }
-    
+  }    
 }
 
 # Create Default Subnet
@@ -31,8 +31,22 @@ resource "aws_default_subnet" "tokyo_default_az1" {
    tags = {
     Name        = "tokyo-subnets-default"
     }  
-    depends_on = [aws_default_vpc.default-tokyo-vpc]
+    #depends_on = [aws_default_vpc.default-tokyo-vpc]
 }
+
+/*# Create a VPC for the region associated with the AZ
+resource "aws_default_vpc" "default-tokyo-vpc" {
+  cidr_block = cidrsubnet("10.0.0.0/8", 4, var.region_number[data.aws_availability_zone.example.region])
+}
+
+# Create a subnet for the AZ within the regional VPC
+resource "aws_default_subnet" "tokyo_default_az1" {
+  availability_zone = data.aws_availability_zone.example
+ force_destroy = "true"
+   tags = {
+    Name        = "tokyo-subnets-default"
+    } 
+}*/
 
 resource "aws_redshift_authentication_profile" "tokyo_redshift" {
   authentication_profile_name = "tokyo-redshift"
@@ -53,7 +67,7 @@ resource "aws_redshift_cluster" "tokyo-redshift-cluster" {
   master_password           = "Tokyo123"
   node_type                 = "dc2.large"
   cluster_type              = "single-node"
-  final_snapshot_identifier = "tokyo-cluster-backup4"
+  final_snapshot_identifier = "tokyo-cluster-backup5"
   depends_on = [aws_default_vpc.default-tokyo-vpc]  
 }
 
