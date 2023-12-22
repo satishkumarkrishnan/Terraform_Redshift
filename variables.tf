@@ -1,7 +1,7 @@
-/*variable "region" {
+variable "region" {
   description = "AWS region"
   default     = "ap-northeast-1"
-}*/
+}
 
 variable "aws_availability_zone" {
   # Assign a number to each AZ letter used in our configuration

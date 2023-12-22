@@ -9,6 +9,5 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region_number
-  
+  region = var.region  
 }
