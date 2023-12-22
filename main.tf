@@ -37,7 +37,6 @@ resource "aws_default_subnet" "tokyo_default_az1" {
 # Create a VPC for the region associated with the AZ
 resource "aws_default_vpc" "default-tokyo-vpc" {
   force_destroy = "true" 
- 
   tags = {
     Name = var.vpc
   } 
