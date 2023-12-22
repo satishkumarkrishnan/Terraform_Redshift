@@ -36,7 +36,7 @@ resource "aws_default_subnet" "tokyo_default_az1" {
 
 # Create a VPC for the region associated with the AZ
 resource "aws_default_vpc" "default-tokyo-vpc" {
-  cidr_block = cidrsubnet("10.0.0.0/8", 1, var.region_number[data.aws_availability_zone.example.region])
+  #cidr_block = cidrsubnet("10.0.0.0/8", 1, var.region_number[data.aws_availability_zone.example.region])
 }
 
 # Create a subnet for the AZ within the regional VPC
