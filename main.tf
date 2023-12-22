@@ -46,7 +46,7 @@ resource "aws_default_vpc" "default-tokyo-vpc" {
 
 # Create a subnet for the AZ within the regional VPC
 resource "aws_default_subnet" "tokyo_default_az1" {
-  availability_zone = data.aws_availability_zone.example
+  availability_zone = data.aws_availability_zone.example.name
  force_destroy = "true"
    tags = {
     Name        = "tokyo-subnets-default"
