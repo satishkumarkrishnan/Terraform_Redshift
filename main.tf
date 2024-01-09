@@ -13,34 +13,13 @@ module "iam" {
   source="git@github.com:satishkumarkrishnan/Terraform_IAM.git?ref=main"
 }
 
-/*# Create Default VPC
-
-resource "aws_default_vpc" "default-tokyo-vpc" {
- force_destroy = "true" 
- 
-  tags = {
-    Name = var.vpc
-  }    
-}
-
-# Create Default Subnet
-
-resource "aws_default_subnet" "tokyo_default_az1" {
-  availability_zone = "ap-northeast-1a"
-  force_destroy = "true"
-   tags = {
-    Name        = "tokyo-subnets-default"
-    }  
-    #depends_on = [aws_default_vpc.default-tokyo-vpc]
-}*/
 
 # Create a VPC for the region associated with the AZ
 resource "aws_default_vpc" "default-tokyo-vpc" {
   force_destroy = "true" 
   tags = {
     Name = var.vpc
-  } 
-  #cidr_block = cidrsubnet("10.0.0.0/8", 1, var.region_number[data.aws_availability_zone.example.region])
+  }  
 }
 
 # Create a subnet for the AZ within the regional VPC
